@@ -85,13 +85,15 @@ def save_image(folder, format, image, file_name):
 
     '''This will save the image object in a given format in a specific directory and return its path'''
 
-    if format == "PNG":
-        file_ext = ".png"
+    if format == 'RGB':
+        file_ext = ".jpg"
     
     new_image_name = file_name + file_ext
     new_image_path = os.path.join(folder, new_image_name)
 
-    image.save(new_image_path)
+    converted_image_object = image.convert(format)
+
+    converted_image_object.save(new_image_path)
 
     return new_image_path
 
@@ -102,11 +104,10 @@ def main():
     image_folder_path, parent_folder = get_directory()
 
     # Make a new folder for the converted images
-    new_images_folder_name = "converted_images"
-    new_images_folder_path = os.path.join(parent_folder, new_images_folder_name)
+    new_path = os.path.normpath("/opt/icons")
 
-    if  not os.path.exists(new_images_folder_path):
-        os.mkdir(new_images_folder_path)
+    if not os.path.exists(new_path):
+        os.mkdir(new_path)
     
     # Iterate through each file in the folder
     for image in os.listdir(image_folder_path):
@@ -125,12 +126,11 @@ def main():
         resized_image = resize_image(rotated_image, 128)
 
         # Save the new image as a PNG in a new folder
-        converted_image_path = save_image(new_images_folder_path, "PNG", resized_image, image_file_name)
+        converted_image_path = save_image(new_path, 'RGB', resized_image, image_file_name)
 
-        print(f"New image created at: {converted_image_path}")
+        print("New image created at: {}".format(converted_image_path))
 
     
-
 ## RUN
 if __name__ == "__main__":
     main()
