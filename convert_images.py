@@ -52,11 +52,9 @@ def rotate_image(image, degrees):
     
 
 
-def resize_image(image, size):
+def resize_image(image, size_x, size_y):
 
     '''This will return an image object that is resized based on a given size'''
-    size_x = size
-    size_y = size
     resized_image = image.resize((size_x, size_y))
 
     return resized_image
@@ -129,7 +127,7 @@ def main():
         image_object = return_image_object(image_path)
 
         # Rotate the image
-        rotated_image = rotate_image(image_object, -90)
+        #rotated_image = rotate_image(image_object, -90)
 
         # Resize the image
         resized_image = resize_image(rotated_image, 128)
