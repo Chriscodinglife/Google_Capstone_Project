@@ -24,9 +24,6 @@ import requests
 
 ## FUNCTIONS
 
-
-
-
 def main():
 
     image_folder = "~/supplier-data/images"
