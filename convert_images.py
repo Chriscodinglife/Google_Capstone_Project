@@ -129,13 +129,13 @@ def main():
         # Rotate the image
         #rotated_image = rotate_image(image_object, -90)
 
+        # Convert image
+        converted_image = convert_image(image_object, 'RGB')
         # Resize the image
-        resized_image = resize_image(rotated_image, 128)
-
-        converted_image = convert_image(resized_image, 'RGB')
+        resized_image = resize_image(converted_image, 600,400)
 
         # Save the new image as a PNG in a new folder
-        new_image_path = save_image(new_path, 'RGB', converted_image, image_file_name)
+        new_image_path = save_image(new_path, 'RGB', resized_image, image_file_name)
 
         print("New image created at: {}".format(new_image_path))
 
