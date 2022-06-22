@@ -81,6 +81,15 @@ def add_tiff_ext(image_path):
     return new_file_path
 
 
+def convert_image(image, format):
+
+    '''Return an image object in a converted given format'''
+
+    converted_image_object = image.convert(format)
+    
+    return converted_image_object
+
+
 def save_image(folder, format, image, file_name):
 
     '''This will save the image object in a given format in a specific directory and return its path'''
