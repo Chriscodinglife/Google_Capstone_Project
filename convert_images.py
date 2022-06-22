@@ -113,7 +113,7 @@ def main():
     image_folder_path, parent_folder = get_directory()
 
     # Make a new folder for the converted images
-    new_path = os.path.normpath("/opt/icons")
+    new_path = os.path.normpath("~/supplier-data/images")
 
     if not os.path.exists(new_path):
         os.mkdir(new_path)
@@ -134,10 +134,12 @@ def main():
         # Resize the image
         resized_image = resize_image(rotated_image, 128)
 
-        # Save the new image as a PNG in a new folder
-        converted_image_path = save_image(new_path, 'RGB', resized_image, image_file_name)
+        converted_image = convert_image(resized_image, 'RGB')
 
-        print("New image created at: {}".format(converted_image_path))
+        # Save the new image as a PNG in a new folder
+        new_image_path = save_image(new_path, 'RGB', converted_image, image_file_name)
+
+        print("New image created at: {}".format(new_image_path))
 
     
 ## RUN
