@@ -98,9 +98,7 @@ def save_image(folder, format, image, file_name):
     new_image_name = file_name + file_ext
     new_image_path = os.path.join(folder, new_image_name)
 
-    converted_image_object = image.convert(format)
-
-    converted_image_object.save(new_image_path)
+    image.save(new_image_path)
 
     return new_image_path
 
