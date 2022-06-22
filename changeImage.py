@@ -106,19 +106,19 @@ def save_image(folder, format, image, file_name):
 def main():
 
     # Get the image path from the user
-    image_folder_path, parent_folder = get_directory()
-
+    # image_folder_path, parent_folder = get_directory()
+    
     # Make a new folder for the converted images
-    new_path = os.path.normpath("~/supplier-data/images")
+    images_path = os.path.normpath("~/supplier-data/images")
 
-    if not os.path.exists(new_path):
-        os.mkdir(new_path)
+    if not os.path.exists(images_path):
+        os.mkdir(images_path)
     
     # Iterate through each file in the folder
-    for image in os.listdir(image_folder_path):
+    for image in os.listdir(images_path):
 
         # Get the full file path
-        image_path = os.path.join(image_folder_path, image)
+        image_path = os.path.join(images_path, image)
         # Get the image file name
         image_file_name = get_file_name(image_path)
         # Get the image object
@@ -133,7 +133,7 @@ def main():
         resized_image = resize_image(converted_image, 600,400)
 
         # Save the new image as a PNG in a new folder
-        new_image_path = save_image(new_path, 'RGB', resized_image, image_file_name)
+        new_image_path = save_image(images_path, 'RGB', resized_image, image_file_name)
 
         print("New image created at: {}".format(new_image_path))
 
