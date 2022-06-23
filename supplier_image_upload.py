@@ -47,3 +47,7 @@ def main():
         if file_extension == ".jpeg":
             with open(image_path, 'rb') as image_file:
                 response = requests.post(url, files={'file': image_file})
+
+
+if __name__ == "__main__":
+    main()
