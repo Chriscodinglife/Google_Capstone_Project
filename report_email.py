@@ -33,8 +33,8 @@ def main():
         summary_pdf_body += "<br/>"
         dict_values = dict.items()
         sorted_values = sorted(dict_values)
-        for key, value in sorted_values:
-            summary_pdf_body += key + ": " + value
+        for value in sorted_values:
+            summary_pdf_body += value[0] + ": " + value[1]
         summary_pdf_body += "<br/>"
 
     report_file_name = "/tmp/processed.pdf"
