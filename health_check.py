@@ -110,7 +110,7 @@ def main():
             everything_ok = False
 
     if not everything_ok:
-        
+
         sender = "automation@example.com"
         user = "<enter_user_here>"
         receiver = "{}@example.com".format(user)
@@ -119,3 +119,8 @@ def main():
 
         email = emails.generate_email(sender, receiver, subject_line, email_body)
         emails.send_email(email)
+
+
+## RUN
+if __name__ == "__main__":
+    main()
