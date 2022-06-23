@@ -88,27 +88,3 @@ def get_text_dict(text):
             this_list.append(this_dict)
 
     return this_list
-
-
-def main():
-
-    ## TODO: Get the current date and prepare the title
-    today = todays_date()
-    title = "Processed Update on {}".format(today)
-
-    ## TODO: Get all the text files data (name, and weight) and add it to a list
-    text_files = "~/supplier-data/descriptions"
-    text_list = get_text_dict(text_files)
-
-    summary_pdf_body = ""
-    for dict in text_list:
-        summary_pdf_body += "<br/>"
-        dict_values = dict.items()
-        sorted_values = sorted(dict_values)
-        for key, value in sorted_values:
-            summary_pdf_body += key + ": " + value
-        summary_pdf_body += "<br/>"
-
-    ## TODO: Generate the report
-    report_file_name = "~/supplier-data/processed.pdf"
-    generate_report(report_file_name, title, summary_pdf_body)
