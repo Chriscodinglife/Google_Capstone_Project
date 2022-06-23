@@ -39,3 +39,9 @@ def main():
 
     report_file_name = "/tmp/processed.pdf"
     reports.generate_report(report_file_name, title, summary_pdf_body)
+
+
+## RUN
+
+if __name__ == "__main__":
+    main()
