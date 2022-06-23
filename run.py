@@ -59,7 +59,7 @@ def get_fruit_dict(texts, images):
     
     this_dict = {}
 
-    if is_type_file(text_path):
+    if is_type_file(text_path, ".txt"):
 
       with open(text_path, 'r') as file:
         lines = file.read().splitlines()
@@ -119,4 +119,3 @@ def main():
 if __name__ == "__main__":
   main()
 
-  
