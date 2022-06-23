@@ -15,6 +15,7 @@ via an email
 '''
 
 ## IMPORT
+import os
 import reports
 import emails
 
@@ -28,7 +29,7 @@ def main():
     title = "Processed Update on {}".format(today)
 
     # Get the list of text files
-    text_files = "~/supplier-data/descriptions"
+    text_files = "{}/supplier-data/descriptions".format(os.path.expanduser('~'))
     text_list = reports.get_text_dict(text_files)
 
     # Create the PDF Body
@@ -47,7 +48,7 @@ def main():
 
     # Prepare the email to be sent
     sender = "automation@example.com"
-    user = "<enter_user_here>"
+    user = ""
     receiver = "{}@example.com".format(user)
     subject = "Upload Completed - Online Fruit Store"
     email_body = "All fruits are uploaded to our website successfully. A detailed list is attached to this email."

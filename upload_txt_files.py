@@ -84,7 +84,7 @@ def post_message(list, url):
 def main():
 
     directory = '/data/feedback'
-    web_address = "<enter_host_domain_here"
+    web_address = ""
     post_url = "http://{}/feedback/".format(web_address)
 
     # Get the normalized path for a given directory

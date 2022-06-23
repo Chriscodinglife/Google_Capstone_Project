@@ -71,12 +71,14 @@ def get_text_dict(text):
 
     # Iterate through both the directories
     for text_path in text_list:
+
+        full_text_path = os.path.join(text_files_path, text_path)
         
         this_dict = {}
 
-        if is_type_file(text_path, ".txt"):
+        if is_type_file(full_text_path, ".txt"):
 
-            with open(text_path, 'r') as file:
+            with open(full_text_path, 'r') as file:
                 lines = file.read().splitlines()
 
                 fruit_name = lines[0]

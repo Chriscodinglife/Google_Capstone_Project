@@ -38,9 +38,10 @@ def get_directory():
 def return_image_object(image_path):
 
     '''This will return an Image/PIL object'''
-    image = Image.open(image_path)
-
-    return image
+    basename = os.path.basename(image_path)
+    if ".tiff" in basename:
+        image = Image.open(image_path)
+        return image
 
 
 def rotate_image(image, degrees):
@@ -93,7 +94,7 @@ def save_image(folder, format, image, file_name):
     '''This will save the image object in a given format in a specific directory and return its path'''
 
     if format == 'RGB':
-        file_ext = ".jpg"
+        file_ext = ".jpeg"
     
     new_image_name = file_name + file_ext
     new_image_path = os.path.join(folder, new_image_name)
@@ -109,7 +110,7 @@ def main():
     # image_folder_path, parent_folder = get_directory()
     
     # Make a new folder for the converted images
-    images_path = os.path.normpath("~/supplier-data/images")
+    images_path = os.path.normpath("{}/supplier-data/images".format(os.path.expanduser('~')))
 
     if not os.path.exists(images_path):
         os.mkdir(images_path)
@@ -128,14 +129,15 @@ def main():
         #rotated_image = rotate_image(image_object, -90)
 
         # Convert image
-        converted_image = convert_image(image_object, 'RGB')
-        # Resize the image
-        resized_image = resize_image(converted_image, 600,400)
+        if (image_object):
+            converted_image = convert_image(image_object, 'RGB')
+            # Resize the image
+            resized_image = resize_image(converted_image, 600,400)
 
-        # Save the new image as a PNG in a new folder
-        new_image_path = save_image(images_path, 'RGB', resized_image, image_file_name)
+            # Save the new image as a PNG in a new folder
+            new_image_path = save_image(images_path, 'RGB', resized_image, image_file_name)
 
-        print("New image created at: {}".format(new_image_path))
+            print("New image created at: {}".format(new_image_path))
 
     
 ## RUN

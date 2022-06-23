@@ -26,10 +26,10 @@ import requests
 
 def main():
 
-    image_folder = "~/supplier-data/images"
+    image_folder = "{}/supplier-data/images".format(os.path.expanduser('~'))
     image_folder_path = os.path.normpath(image_folder)
     
-    web_address = "<enter_address_here>"
+    web_address = ""
     url = "http://{}/upload/".format(web_address)
 
 

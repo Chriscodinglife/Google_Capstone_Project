@@ -47,21 +47,32 @@ def get_fruit_dict(texts, images):
   text_files_path = os.path.normpath(texts)
   image_files_path = os.path.normpath(images)
 
+
+
   keys = ["name", "weight", "description", "image_name"]
 
   sorted_txt_list = sorted(os.listdir(text_files_path))
-  sorted_image_list = sorted(os.listdir(image_files_path))
+  images = []
+  all_images = os.listdir(image_files_path)
+  for this_image in all_images:
+    if ".jpeg" in this_image:
+      images.append(this_image)
+
+  sorted_image_list = sorted(images)
 
   fruit_list = []
 
   # Iterate through both the directories
   for text_path, image_path in zip(sorted_txt_list, sorted_image_list):
+
+    this_text_path = os.path.join(text_files_path, text_path)
+    this_image_path = os.path.join(image_files_path, image_path)
     
     this_dict = {}
 
-    if is_type_file(text_path, ".txt"):
+    if is_type_file(this_text_path, ".txt"):
 
-      with open(text_path, 'r') as file:
+      with open(this_text_path, 'r') as file:
         lines = file.read().splitlines()
 
         fruit_name = lines[0]
@@ -71,11 +82,13 @@ def get_fruit_dict(texts, images):
         fruit_weight = result.group(1)
 
         fruit_description = lines[2]
+        fruit_description = fruit_description.replace(u'\xa0', u'')
 
-    image_name = get_file_name(image_path)
+
+    image_name = get_file_name(this_image_path)
 
     this_dict[keys[0]] = fruit_name
-    this_dict[keys[1]] = fruit_weight
+    this_dict[keys[1]] = int(fruit_weight)
     this_dict[keys[2]] = fruit_description
     this_dict[keys[3]] = image_name
 
@@ -90,6 +103,7 @@ def post_fruit(list, url):
 
     '''Return the status code of post request to a given url with the data set from a dictionary'''
     for dictionary in list:
+        print(dictionary)
         json_object = json.dumps(dictionary)
 
         print("Posting to {}".format(url))
@@ -104,11 +118,11 @@ def post_fruit(list, url):
 def main():
 
   # Add the directory paths for the texts and images
-  text_files = "~/supplier-data/descriptions"
-  image_files = "~/supplier-data/images"
+  text_files = "{}/supplier-data/descriptions".format(os.path.expanduser('~'))
+  image_files = "{}/supplier-data/images".format(os.path.expanduser('~'))
 
-  linux_instance = "<enter_instance>"
-  url = "http://{}/fruits".format(linux_instance)
+  linux_instance = ""
+  url = "http://{}/fruits/".format(linux_instance)
 
   fruit_list = get_fruit_dict(text_files, image_files)
 

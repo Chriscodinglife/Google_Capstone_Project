@@ -112,7 +112,7 @@ def main():
     if not everything_ok:
 
         sender = "automation@example.com"
-        user = "<enter_user_here>"
+        user = ""
         receiver = "{}@example.com".format(user)
 
         email_body = "Please check your system and resolve the issue as soon as possible."
